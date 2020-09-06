@@ -2,6 +2,10 @@
 
 <%= "#{@collaborator.company.name} - www.#{@collaborator.company.domain}" %>
 
+<% if @collaborator.inactive? %>
+    <%= link_to 'Completar informações', edit_collaborator_registration_path(@collaborator) %>
+<% end %>
+
 <% if @categories.any? %>
     <h2> Encontre por categoria </h2>
     <% @categories.each do |category| %>

@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_155431) do
     t.string "role"
     t.string "department"
     t.integer "company_id", null: false
-    t.integer "status"
+    t.integer "status", default: 0
     t.index ["company_id"], name: "index_collaborators_on_company_id"
     t.index ["email"], name: "index_collaborators_on_email", unique: true
     t.index ["reset_password_token"], name: "index_collaborators_on_reset_password_token", unique: true

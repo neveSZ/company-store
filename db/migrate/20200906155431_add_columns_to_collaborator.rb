@@ -6,6 +6,6 @@ class AddColumnsToCollaborator < ActiveRecord::Migration[6.0]
     add_column :collaborators, :role, :string
     add_column :collaborators, :department, :string
     add_reference :collaborators, :company, null: false, foreign_key: true
-    add_column :collaborators, :status, :integer
+    add_column :collaborators, :status, :integer, default: 0
   end
 end
