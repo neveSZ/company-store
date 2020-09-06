@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_05_201323) do
+ActiveRecord::Schema.define(version: 2020_09_06_155431) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "collaborators", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -20,8 +27,24 @@ ActiveRecord::Schema.define(version: 2020_09_05_201323) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "full_name"
+    t.string "social_name"
+    t.date "birth_date"
+    t.string "role"
+    t.string "department"
+    t.integer "company_id", null: false
+    t.integer "status"
+    t.index ["company_id"], name: "index_collaborators_on_company_id"
     t.index ["email"], name: "index_collaborators_on_email", unique: true
     t.index ["reset_password_token"], name: "index_collaborators_on_reset_password_token", unique: true
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "domain"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "collaborators", "companies"
 end
