@@ -21,9 +21,6 @@ feature 'Collaborator fills all profile information' do
   xscenario 'successfully in product page' do
   end
 
-  xscenario 'successfully in sell page' do
-  end
-
   scenario 'incomplete infos' do
     collaborator = Collaborator.create!(email: 'victor@treinadev.com.br', password: '!a123456789b')
 
