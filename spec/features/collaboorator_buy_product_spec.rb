@@ -46,7 +46,7 @@ feature 'Collaborator buy a product' do
     expect(page).to_not have_content('S20')
   end
 
-  scenario 'from same people' do
+  scenario 'from same people in product' do
     category = Category.create!(name: 'Celulares', description: 'teste')
     seller = Collaborator.create!(email: 'victor@treinadev.com.br', password: '!a123456789b', full_name: 'Victor Neves Silva', birth_date: '13/07/2000', role: 'Analista', department: 'Tecnologia')
     product = Product.create!(name: 'S20', category: category, description: 'teste teste', value: 10.00, status: 0, collaborator: seller)
@@ -57,13 +57,13 @@ feature 'Collaborator buy a product' do
     expect(page).to_not have_content('Comprar')
   end
 
-  xscenario 'from same people in home page' do
+  scenario 'from same people in home page' do
     category = Category.create!(name: 'Celulares', description: 'teste')
     seller = Collaborator.create!(email: 'victor@treinadev.com.br', password: '!a123456789b', full_name: 'Victor Neves Silva', birth_date: '13/07/2000', role: 'Analista', department: 'Tecnologia')
     product = Product.create!(name: 'S20', category: category, description: 'teste teste', value: 10.00, status: 0, collaborator: seller)
 
     login_as seller
-    visit "/products/#{product.id}"
+    visit root_path
 
     expect(page).to_not have_content('Comprar')
   end

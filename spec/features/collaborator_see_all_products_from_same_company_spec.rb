@@ -24,7 +24,6 @@ feature 'collaborator can see all products from his company' do
     expect(page).to_not have_content('S50')
     expect(page).to_not have_content('S60')
     expect(page).to_not have_content('S70')
-    expect(page).to have_content('Comprar', count: 2)
   end
 
   scenario 'no product from his company' do

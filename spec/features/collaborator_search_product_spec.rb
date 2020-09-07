@@ -25,7 +25,6 @@ feature 'Collaborator search for a product' do
     expect(page).to_not have_content('SAM30')
     expect(page).to_not have_content('SAM50')
     expect(page).to_not have_content('SAM70')
-    expect(page).to have_content('Comprar', count: 3)
   end
 
   scenario 'partial match' do

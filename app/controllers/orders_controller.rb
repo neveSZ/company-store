@@ -5,11 +5,15 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.collaborator = current_collaborator
 
-    if @order.save
-      flash.now[:notice] = 'Pedido realizado com sucesso'
-      render :show
+    if current_collaborator.active?
+      if @order.save
+        flash.now[:notice] = 'Pedido realizado com sucesso'
+        render :show
+      else
+        redirect_to root_path, notice: 'Ocorreu um erro ao realizar seu pedido'
+      end
     else
-      redirect_to root_path
+      redirect_to edit_collaborator_registration_path, notice: 'Para fazer um pedido complete seu cadastro'
     end
   end
 

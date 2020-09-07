@@ -18,7 +18,18 @@ feature 'Collaborator fills all profile information' do
     expect(page).to_not have_content('Completar informações')
   end
 
-  xscenario 'successfully in product page' do
+  scenario 'successfully in product page' do
+    category = Category.create!(name: 'Celulares', description: 'teste categoria')
+    seller = Collaborator.create!(email: 'victor@treinadev.com.br', password: '!a123456789b', full_name: 'Victor Neves Silva', birth_date: '13/07/2000', role: 'Analista', department: 'Tecnologia')
+    collaborator = Collaborator.create!(email: 'joao@treinadev.com.br', password: '!a123456789b')
+    Product.create!(name: 'SAM20', category: category, description: 'teste produto', value: 10.00, status: 0, collaborator: seller)
+
+    login_as collaborator
+    visit root_path
+    click_on 'SAM20'
+    click_on 'Comprar'
+
+    expect(page).to have_content('Para fazer um pedido complete seu cadastro')
   end
 
   scenario 'incomplete infos' do
@@ -51,5 +62,4 @@ feature 'Collaborator fills all profile information' do
     expect(page).to have_content('A sua conta foi atualizada com sucesso.')
     expect(page).to_not have_content('Completar informações')
   end
-  
 end

@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.collaborator = current_collaborator
-    puts(@product.images)
     if @product.save
       flash.now[:notice] = 'Anuncio criado com sucesso'
       render :show
