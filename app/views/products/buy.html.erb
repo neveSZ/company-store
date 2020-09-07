@@ -4,9 +4,7 @@
     <%= "Categoria: #{@product.category.name} "%>
     <%= @product.description %>
     <%= number_to_currency @product.value %>
-    <% if current_collaborator != @product.collaborator %>
-        <%= link_to 'Comprar', orders_path(product_id: @product),method: :post %>
-    <% end %>
+    <%= link_to 'Comprar' %>
     <%  @product.images_urls.each do |image_url| %>
         <%= image_tag(image_url) %>
     <% end %>

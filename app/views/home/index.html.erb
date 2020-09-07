@@ -21,7 +21,7 @@
     <% @products.each do |product| %>
         <%= link_to product.name, product %>
         <%= number_to_currency product.value %>
-        <%= link_to 'Comprar' %>
+        <%= link_to 'Comprar', orders_path(product_id: product),method: :post %>
     <% end %>
 <% else %>
     Nenhum produto disponível

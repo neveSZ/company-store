@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_06_224103) do
+ActiveRecord::Schema.define(version: 2020_09_07_181635) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -46,6 +46,32 @@ ActiveRecord::Schema.define(version: 2020_09_06_224103) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "order_messages", force: :cascade do |t|
+    t.integer "collaborator_id", null: false
+    t.string "text"
+    t.date "date"
+    t.integer "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["collaborator_id"], name: "index_order_messages_on_collaborator_id"
+    t.index ["order_id"], name: "index_order_messages_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "collaborator_id", null: false
+    t.integer "status"
+    t.float "value"
+    t.integer "order_messages_id"
+    t.date "order_date"
+    t.date "sell_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "product_id", null: false
+    t.index ["collaborator_id"], name: "index_orders_on_collaborator_id"
+    t.index ["order_messages_id"], name: "index_orders_on_order_messages_id"
+    t.index ["product_id"], name: "index_orders_on_product_id"
+  end
+
   create_table "product_messages", force: :cascade do |t|
     t.integer "collaborator_id", null: false
     t.string "texto"
@@ -72,6 +98,11 @@ ActiveRecord::Schema.define(version: 2020_09_06_224103) do
   end
 
   add_foreign_key "collaborators", "companies"
+  add_foreign_key "order_messages", "collaborators"
+  add_foreign_key "order_messages", "orders"
+  add_foreign_key "orders", "collaborators"
+  add_foreign_key "orders", "order_messages", column: "order_messages_id"
+  add_foreign_key "orders", "products"
   add_foreign_key "product_messages", "collaborators"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "collaborators"

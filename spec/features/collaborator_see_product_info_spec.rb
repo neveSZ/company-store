@@ -16,7 +16,6 @@ feature 'Collaborator see product info' do
     expect(page).to have_content('Categoria: Celulares')
     expect(page).to have_content('teste produto')
     expect(page).to have_content('R$ 10,00')
-    expect(page).to have_content('Comprar')
     expect(page).to_not have_content('SAM30')
   end
 
@@ -33,7 +32,6 @@ feature 'Collaborator see product info' do
     expect(page).to have_content('Categoria: Celulares')
     expect(page).to have_content('teste produto')
     expect(page).to have_content('R$ 10,00')
-    expect(page).to have_content('Comprar')
   end
 
   scenario 'from other company' do

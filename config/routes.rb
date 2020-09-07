@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :products, only: %i[new create show]
+  resources :orders, only: %i[create show]
 end
