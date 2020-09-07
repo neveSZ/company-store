@@ -4,6 +4,10 @@ Esse projeto faz parte da primeira parte do programa de treinamento da 4ª turma
 
 O projeto consiste em uma aplicação baseada em **Ruby on Rails** para criar uma plataforma web para anúncio, compra e venda de produtos de pessoas dentro uma mesma empresa.
 
+Um esboço rápido do diagrama de classes pode ser acessado [aqui](./spec/features/collaborator_add_info_spec.rb).
+
+Um board do Trello está sendo utilizado para a elaboração do projeto, você pode acessa-lo nesse [link](https://trello.com/b/ruL0xNhc/projeto-treinadev).
+
 ## Instruções para executar
 Para a execução do projeto é recomendável que você esteja na versão 2.7.0 do Ruby, utilizando a versão 6.0.3.2 do framework Rais e com o SQLite instalado.
 
@@ -27,4 +31,8 @@ Em seguida acesse o servidor através do endereço `localhost:3000`
 * [RSpec](https://github.com/rspec/rspec-rails) (rspec-rails): para a realização de testes de usabilidade/integração, simulando a utilização de um usuário na web;
 * [CarrierWave](https://github.com/carrierwaveuploader/carrierwave) (carrierwave): para fazer o upload das imagens dos anuncios.
 
-## Testes utilizados
+## Testes de features utilizados
+* [collaborator_add_info_spec](./spec/features/collaborator_add_info_spec.rb): colaborador completa as informações do seu perfil;
+* [collaborator_announce_product_spec](./spec/features/collaborator_announce_product_spec.rb): colaborador anuncia um produto;
+* [collaborator_add_info_spec](./spec/features/collaborator_add_info_spec.rb): colaborador se cadastra na plataforma.
+
