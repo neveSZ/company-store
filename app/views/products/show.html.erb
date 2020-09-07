@@ -1,0 +1,6 @@
+<%= @product.name %>
+<%= @product.description %>
+<%= number_to_currency @product.value %>
+<%  @product.images_urls.each do |image_url| %>
+    <%= image_tag(image_url) %>
+<% end %>

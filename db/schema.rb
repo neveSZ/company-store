@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_06_155431) do
+ActiveRecord::Schema.define(version: 2020_09_06_224103) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -46,5 +46,34 @@ ActiveRecord::Schema.define(version: 2020_09_06_155431) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "product_messages", force: :cascade do |t|
+    t.integer "collaborator_id", null: false
+    t.string "texto"
+    t.string "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["collaborator_id"], name: "index_product_messages_on_collaborator_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "category_id", null: false
+    t.json "images"
+    t.string "description"
+    t.string "value"
+    t.integer "status", default: 0
+    t.integer "product_messages_id"
+    t.integer "collaborator_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["collaborator_id"], name: "index_products_on_collaborator_id"
+    t.index ["product_messages_id"], name: "index_products_on_product_messages_id"
+  end
+
   add_foreign_key "collaborators", "companies"
+  add_foreign_key "product_messages", "collaborators"
+  add_foreign_key "products", "categories"
+  add_foreign_key "products", "collaborators"
+  add_foreign_key "products", "product_messages", column: "product_messages_id"
 end

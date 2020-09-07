@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      product: Produto
+    attributes:
+      product:
+        name: Nome
+        category: Categoria
+        category_id: Categoria
+        description: Descrição
+        value: Valor
+        messages: Mensagens
+        messages_id: Mensagens
+        collaborator: Vendedor
+        collaborator_id: Vendedor
+        images: Fotos
