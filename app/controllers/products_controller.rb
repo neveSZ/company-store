@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_collaborator!
+
   def new
     @product = Product.new
     @categories = Category.all
@@ -19,7 +20,11 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
+    if current_collaborator.company != Product.find(params[:id]).collaborator.company
+      redirect_to root_path, flash: { alert: 'Produto indisponível' }
+    else
+      @product = Product.find(params[:id])
+    end
   end
 
   private def product_params

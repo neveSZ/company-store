@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   get 'home/search', to: 'home#search'
   root to: 'home#index'
 
-  resources :products, only: %i[new create]
+  resources :products, only: %i[new create show]
 end

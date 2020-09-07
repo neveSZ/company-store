@@ -28,4 +28,12 @@ class Collaborator < ApplicationRecord
                     0
                   end
   end
+
+  def name
+    if social_name.present?
+      social_name
+    else
+      full_name
+    end
+  end
 end

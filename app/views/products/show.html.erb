@@ -1,6 +1,11 @@
-<%= @product.name %>
-<%= @product.description %>
-<%= number_to_currency @product.value %>
-<%  @product.images_urls.each do |image_url| %>
-    <%= image_tag(image_url) %>
+<% if @product.present? %>
+    <%= @product.name %>
+    <%= link_to "Vendido por: #{@product.collaborator.name} - #{@product.collaborator.department}" %>
+    <%= "Categoria: #{@product.category.name} "%>
+    <%= @product.description %>
+    <%= number_to_currency @product.value %>
+    <%= link_to 'Comprar' %>
+    <%  @product.images_urls.each do |image_url| %>
+        <%= image_tag(image_url) %>
+    <% end %>
 <% end %>

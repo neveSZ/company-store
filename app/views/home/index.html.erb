@@ -19,7 +19,7 @@
 <h2> Produtos à venda </h2>
 <% if @products.any? %>
     <% @products.each do |product| %>
-        <%= product.name %>
+        <%= link_to product.name, product %>
         <%= number_to_currency product.value %>
         <%= link_to 'Comprar' %>
     <% end %>
