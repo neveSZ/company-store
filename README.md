@@ -19,10 +19,12 @@ yarn install
 rails db:migrate
 rails start
 ```
+Em seguida acesse o servidor através do endereço `localhost:3000`
 
 ## Gems utilizadas
 * [Capybara](https://github.com/teamcapybara/capybara) (capybara): para criação de testes de funcionalidade, integração e testes unitários;
 * [Devise](https://github.com/heartcombo/devise) (devise): para realizar a autenticação dos colaboradores;
-* [RSpec](https://github.com/rspec/rspec-rails) (rspec-rails): para a realização de testes de usabilidade/integração, simulando a utilização de um usuário na web.
+* [RSpec](https://github.com/rspec/rspec-rails) (rspec-rails): para a realização de testes de usabilidade/integração, simulando a utilização de um usuário na web;
+* [CarrierWave](https://github.com/carrierwaveuploader/carrierwave) (carrierwave): para fazer o upload das imagens dos anuncios.
 
 ## Testes utilizados
