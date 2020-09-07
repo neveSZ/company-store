@@ -4,7 +4,7 @@ Esse projeto faz parte da primeira parte do programa de treinamento da 4ª turma
 
 O projeto consiste em uma aplicação baseada em **Ruby on Rails** para criar uma plataforma web para anúncio, compra e venda de produtos de pessoas dentro uma mesma empresa.
 
-Um esboço rápido do diagrama de classes pode ser acessado [aqui](./spec/features/collaborator_add_info_spec.rb).
+Um esboço rápido do diagrama de classes pode ser acessado [aqui](./diagrams/class_diagram_sketch.html).
 
 Um board do Trello está sendo utilizado para a elaboração do projeto, você pode acessa-lo nesse [link](https://trello.com/b/ruL0xNhc/projeto-treinadev).
 
