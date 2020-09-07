@@ -17,7 +17,7 @@ feature 'Collaborator sign up a account' do
     expect(page).to have_content 'Treina Dev'
     expect(page).to have_content 'Encontre por categoria'
     expect(page).to have_content 'Celulares'
-    expect(page).to_not have_content 'Produtos à venda'
+    expect(page).to have_content 'Produtos à venda'
   end
 
   scenario 'already registred' do
