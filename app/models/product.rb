@@ -11,5 +11,26 @@ class Product < ApplicationRecord
     sold: 2,
     negotiation: 3
   }
+
+  def set_negotiation
+    self.status = 'negotiation'
+    save
+  end
+
+  def set_inactive
+    self.status = 'inactive'
+    save
+  end
+
+  def set_sold
+    self.status = 'sold'
+    save
+  end
+
+  def set_avaliable
+    self.status = 'avaliable'
+    save
+  end
+
   # serialize :images, JSON
 end

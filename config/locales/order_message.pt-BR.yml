@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      order_message: Mensagem do pedido
+    attributes:
+      order_message:
+        collaborator: Colaborador
+        collaborator_id: Colaborador
+        text: Texto
+        date: Data
+        order: Pedido
+        order_id: Pedido
+        

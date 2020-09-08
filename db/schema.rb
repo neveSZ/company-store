@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_181635) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "collaborator_id", null: false
-    t.integer "status"
+    t.integer "status", default: 0
     t.float "value"
     t.integer "order_messages_id"
     t.date "order_date"

@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      product_message: Mensagem do produto
+    attributes:
+      product_message:
+        collaborator: Colaborador
+        collaborator_id: Colaborador
+        text: Texto
+        date: Data
+        product: Produto
+        product_id: Produto
+        
