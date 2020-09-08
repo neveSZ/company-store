@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'orders/completed', to: 'orders#completed'
   root to: 'home#index'
 
-  resources :products, only: %i[new create show]
+  resources :products, only: %i[new create show index update]
   resources :orders, only: %i[create show index update]
   resources :collaborators, only: :show
 end

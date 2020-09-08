@@ -4,9 +4,16 @@
     <%= "Categoria: #{@product.category.name} "%>
     <%= @product.description %>
     <%= number_to_currency @product.value %>
-    <% if current_collaborator != @product.collaborator %>
+    <% if current_collaborator == @product.collaborator %>
+        <%= "Status: #{@product.status}"%>
+        <% if @product.avaliable? %>
+            <%= link_to 'Suspender venda', product_path(product: {id: @product, status: 'inactive'}), method: :put %>
+        <% elsif @product.inactive? %>
+            <%= link_to 'Reativar venda', product_path(product: {id: @product, status: 'avaliable'}), method: :put %>
+        <% end %>
+    <% else %>
         <%= link_to 'Comprar', orders_path(product_id: @product),method: :post %>
-    <% end %>
+    <% end %>   
     <%  @product.images_urls.each do |image_url| %>
         <%= image_tag(image_url) %>
     <% end %>

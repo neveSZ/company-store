@@ -10,6 +10,7 @@
     <%= link_to 'Anunciar', new_product_path %>
     <%= link_to 'Minhas compras',  orders_path(seller: false) %>
     <%= link_to 'Minhas vendas',  orders_path(seller: true) %>
+    <%= link_to 'Meus produtos',  products_path %>
 <% end %>
 
 <%= form_with url: home_search_path, method: :get, local: true do |f| %>

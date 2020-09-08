@@ -32,6 +32,7 @@ class OrdersController < ApplicationController
   def completed
     @order = Order.find(params[:id])
     @order.set_completed
+    @order.product.set_sold
   end
 
   def update

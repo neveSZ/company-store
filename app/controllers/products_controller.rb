@@ -10,8 +10,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.collaborator = current_collaborator
     if @product.save
-      flash.now[:notice] = 'Anuncio criado com sucesso'
-      render :show
+      redirect_to @product, notice: 'Anuncio criado com sucesso'
     else
       @categories = Category.all
       render :new
@@ -26,7 +25,21 @@ class ProductsController < ApplicationController
     end
   end
 
+  def index
+    @products = Product.where(collaborator: current_collaborator)
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      @product.status = product_params[:status]
+      redirect_to @product
+    else
+      render :index
+    end
+  end
+
   private def product_params
-    params.require(:product).permit(:name, :category_id, :description, :value, :messages_id, { images: [] })
+    params.require(:product).permit(:name, :category_id, :description, :value, :messages_id, :status, { images: [] })
   end
 end

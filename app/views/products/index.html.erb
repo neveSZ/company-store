@@ -1,0 +1,8 @@
+<% if @products.any? %>
+    <% @products.each do |product| %>
+        <%= link_to product.name, product %>
+        <%= number_to_currency product.value %>
+        <%= "Status: #{product.status}" %>
+    <% end %>
+<% end %>
+
