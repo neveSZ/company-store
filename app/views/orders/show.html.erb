@@ -8,7 +8,7 @@
     <%  @order.product.images_urls.each do |image_url| %>
         <%= image_tag(image_url) %>
     <% end %>
-    <% if @order.product.collaborator == current_collaborator %>
+    <% if @order.product.collaborator == current_collaborator && @order.negotiation? %>
         <%= link_to 'Concluir venda', orders_completed_path(id: @order) %>
         <%= link_to 'Cancelar venda', order_path(order: {id: @order, status: 'canceled'}), method: :put %>
     <% end %>
