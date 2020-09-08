@@ -13,7 +13,6 @@
 <% end %>
 
 <%= form_with url: home_search_path, method: :get, local: true do |f| %>
-    <%= f.label :product_search %>
     <%= f.text_field :product_search %>
     <%= f.submit 'Pesquisar' %>
 <% end %>
