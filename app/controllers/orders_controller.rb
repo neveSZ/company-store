@@ -2,12 +2,11 @@ class OrdersController < ApplicationController
   before_action :authenticate_collaborator!
 
   def create
-    @order = Order.new(order_params)
+    @order = Order.new(params.permit(:product_id))
     @order.collaborator = current_collaborator
 
     if current_collaborator.active?
       if @order.save
-        @order.product.set_negotiation
         flash.now[:notice] = 'Pedido realizado com sucesso'
         render :show
       else
@@ -26,7 +25,26 @@ class OrdersController < ApplicationController
               end
   end
 
+  def show
+    @order = Order.find(params[:id])
+  end
+
+  def completed
+    @order = Order.find(params[:id])
+    @order.set_completed
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+      @order.product.set_avaliable if order_params[:status] == 'canceled'
+      redirect_to @order
+    else
+      render :completed
+    end
+  end
+
   private def order_params
-    params.permit(:product_id)
+    params.require(:order).permit(:value, :status)
   end
 end

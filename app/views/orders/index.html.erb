@@ -1,6 +1,6 @@
 <% if @orders.any? %>
     <% @orders.each do |order| %>
-        <%= link_to "Pedido ##{order.id} - #{order.product.name}" %>
+        <%= link_to "Pedido ##{order.id} - #{order.product.name}", order %>
         <%= number_to_currency order.value %>
         <%= "Status: #{order.status}"%>
     <% end %>

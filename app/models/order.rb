@@ -3,6 +3,7 @@ class Order < ApplicationRecord
   has_many :order_messages
   belongs_to :product
   before_create :set_init_value, :set_order_date
+  after_create :set_negotiation
 
   enum status: {
     negotiation: 0,
