@@ -1,7 +1,7 @@
 <% if @order.present? %>
     <%= "Pedido ##{@order.id} - #{@order.product.name}" %>
     <%= "Status: #{@order.status}"%>
-    <%= link_to "Vendido por: #{@order.product.collaborator.name} - #{@order.product.collaborator.department}" %>
+    <%= link_to "Vendido por: #{@order.product.collaborator.name} - #{@order.product.collaborator.department}", collaborator_path(@order.product.collaborator)  %>
     <%= "Categoria: #{@order.product.category.name} "%>
     <%= @order.product.description %>
     <%= number_to_currency @order.value %>

@@ -55,4 +55,27 @@ feature 'collaborator see other collaborator details' do
     expect(page).to_not have_content(collaborator.name)
     expect(page).to have_content 'Esse colaborador não é da sua empresa'
   end
+
+  scenario 'from order page' do
+    category = Category.create!(name: 'Celulares', description: 'teste categoria')
+    collaborator = Collaborator.create!(email: 'victor@treinadev.com.br', password: '!a123456789b', full_name: 'Victor Neves Silva', birth_date: '13/07/2000', role: 'Analista', department: 'Tecnologia')
+    collaborator_other = Collaborator.create!(email: 'joao@treinadev.com.br', password: '!a123456789b', full_name: 'Joao Neves Silva', birth_date: '13/07/2000', role: 'Analista', department: 'Tecnologia')
+    product = Product.create!(name: 'S20', category: category, description: 'teste produto', value: 10.00, status: 0, collaborator: collaborator_other)
+    product2 = Product.create!(name: 'S30', category: category, description: 'teste produto', value: 10.00, status: 0, collaborator: collaborator_other)
+    order = Order.create!(collaborator: collaborator, product: product)
+
+    login_as collaborator
+    visit root_path
+    click_on 'Minhas compras'
+    click_on 'S20'
+    click_on 'Vendido por: Joao Neves Silva - Tecnologia'
+
+    expect(page).to have_content(collaborator_other.name)
+    expect(page).to have_content(collaborator_other.email)
+    expect(page).to have_content(collaborator_other.birth_date)
+    expect(page).to have_content(collaborator_other.role)
+    expect(page).to have_content(collaborator_other.department)
+    expect(page).to have_content(product2.name)
+    expect(page).to_not have_content(product.name)
+  end
 end
