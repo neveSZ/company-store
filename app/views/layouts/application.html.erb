@@ -7,11 +7,39 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% if collaborator_signed_in? %>
+      <h1> Marketplace </h1>
+
+      <%= "#{current_collaborator.company.name} - www.#{current_collaborator.company.domain}" %>
+      
+      <%= link_to 'Inicio', root_path %>
+
+      <% if current_collaborator.inactive? %>
+          <%= link_to 'Completar informações', edit_collaborator_registration_path(current_collaborator) %>
+      <% end %>
+
+      <% if current_collaborator.active? %>
+          <%= link_to 'Anunciar', new_product_path %>
+          <%= link_to 'Minhas compras',  orders_path(seller: false) %>
+          <%= link_to 'Minhas vendas',  orders_path(seller: true) %>
+          <%= link_to 'Meus produtos',  products_path %>
+      <% end %>
+
+      <%= form_with url: home_search_path, method: :get, local: true do |f| %>
+          <%= f.text_field :product_search %>
+          <%= f.submit 'Pesquisar' %>
+      <% end %>
+
+    <% end %>
+
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% flash.each do |type, msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

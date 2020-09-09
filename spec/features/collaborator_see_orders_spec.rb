@@ -58,6 +58,6 @@ feature 'Collaborator see all orders' do
     visit root_path
     click_on 'Minhas vendas'
 
-    expect(page).to have_content('Você ainda não realizou vendas')
+    expect(page).to have_content('Você ainda não possui pedidos')
   end
 end
