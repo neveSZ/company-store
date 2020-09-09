@@ -1,7 +1,7 @@
 class ProductMessage < ApplicationRecord
   belongs_to :collaborator
   belongs_to :product
-  validates :text, :date, presence: true
+  validates :text, :date, :product, presence: true
   before_validation :set_date
 
   private def set_date

@@ -5,6 +5,7 @@ class Order < ApplicationRecord
   before_validation :set_init_value, :set_order_date
   after_create :set_negotiation
   validates :collaborator, :product, :order_date, :status, presence: true
+  validates :product, uniqueness: true
   validates :value, numericality: { greater_than_or_equal_to: 0.00 }, presence: true
 
   enum status: {
