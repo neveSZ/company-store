@@ -11,6 +11,6 @@ pt-BR:
         value: Valor
         messages: Mensagens
         messages_id: Mensagens
-        collaborator: Vendedor
-        collaborator_id: Vendedor
+        collaborator: Vendedor(a)
+        collaborator_id: Vendedor(a)
         images: Fotos

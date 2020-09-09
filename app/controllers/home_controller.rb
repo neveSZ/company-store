@@ -4,6 +4,7 @@ class HomeController < ApplicationController
     @categories = Category.all
     @collaborator = current_collaborator
     @products = Product.joins(:collaborator).where(status: 0, collaborators: { company: @collaborator.company })
+    @order_message = OrderMessage.new
   end
 
   def search

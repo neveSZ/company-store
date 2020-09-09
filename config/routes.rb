@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :products, only: %i[new create show index update]
   resources :orders, only: %i[create show index update]
   resources :collaborators, only: :show
+  resources :order_messages, only: :create
 end

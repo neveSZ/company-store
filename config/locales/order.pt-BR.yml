@@ -4,8 +4,8 @@ pt-BR:
       order: Pedido
     attributes:
       order:
-        collaborator: Comprador
-        collaborator_id: Comprador
+        collaborator: Comprador(a)
+        collaborator_id: Comprador(a)
         date: Data
         order: Pedido
         order_id: Pedido

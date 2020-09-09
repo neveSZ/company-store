@@ -5,11 +5,28 @@
     <%= "Categoria: #{@order.product.category.name} "%>
     <%= @order.product.description %>
     <%= number_to_currency @order.value %>
+
     <%  @order.product.images_urls.each do |image_url| %>
         <%= image_tag(image_url) %>
     <% end %>
+
     <% if @order.product.collaborator == current_collaborator && @order.negotiation? %>
         <%= link_to 'Concluir venda', orders_completed_path(id: @order) %>
         <%= link_to 'Cancelar venda', order_path(order: {id: @order, status: 'canceled'}), method: :put %>
     <% end %>
+
+    <h2> Mensagens </h2>
+    <%  @order.order_messages.each do |message| %>
+        <%= "#{message.collaborator.name} - #{message.collaborator_type}" %>
+        <%= message.collaborator.department %>
+        <%= message.text %>
+    <% end %>
+    
+    <h2> Nova Mensagem </h2>
+    <%= form_with model: OrderMessage.new, local: true do |f| %>
+        <%= f.text_area :text %>
+        <%= f.hidden_field :order_id, value: @order.id %>
+        <%= f.submit 'Enviar' %>
+    <% end %>
+    
 <% end %>

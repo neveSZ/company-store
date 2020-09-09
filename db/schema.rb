@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_07_181635) do
+ActiveRecord::Schema.define(version: 2020_09_09_010751) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_181635) do
     t.integer "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "collaborator_type"
     t.index ["collaborator_id"], name: "index_order_messages_on_collaborator_id"
     t.index ["order_id"], name: "index_order_messages_on_order_id"
   end

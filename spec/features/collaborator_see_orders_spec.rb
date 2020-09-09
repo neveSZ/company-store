@@ -46,4 +46,18 @@ feature 'Collaborator see all orders' do
     expect(page).to have_content('negotiation')
     expect(page).to have_content('completed')
   end
+
+  scenario 'no orders' do
+    category = Category.create!(name: 'Celulares', description: 'teste')
+    collaborator = Collaborator.create!(email: 'victor@treinadev.com.br', password: '!a123456789b', full_name: 'Victor Neves Silva', birth_date: '13/07/2000', role: 'Analista', department: 'Tecnologia')
+    product1 = Product.create!(name: 'S20', category: category, description: 'teste teste', value: 10.00, collaborator: collaborator)
+    product2 = Product.create!(name: 'S30', category: category, description: 'teste teste', value: 10.00, collaborator: collaborator)
+    product3 = Product.create!(name: 'S50', category: category, description: 'teste teste', value: 10.00, collaborator: collaborator)
+
+    login_as collaborator
+    visit root_path
+    click_on 'Minhas vendas'
+
+    expect(page).to have_content('Você ainda não realizou vendas')
+  end
 end
