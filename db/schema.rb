@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_010751) do
+ActiveRecord::Schema.define(version: 2020_09_09_021032) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -75,11 +75,13 @@ ActiveRecord::Schema.define(version: 2020_09_09_010751) do
 
   create_table "product_messages", force: :cascade do |t|
     t.integer "collaborator_id", null: false
-    t.string "texto"
+    t.string "text"
     t.string "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "product_id", null: false
     t.index ["collaborator_id"], name: "index_product_messages_on_collaborator_id"
+    t.index ["product_id"], name: "index_product_messages_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -105,6 +107,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_010751) do
   add_foreign_key "orders", "order_messages", column: "order_messages_id"
   add_foreign_key "orders", "products"
   add_foreign_key "product_messages", "collaborators"
+  add_foreign_key "product_messages", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "collaborators"
   add_foreign_key "products", "product_messages", column: "product_messages_id"

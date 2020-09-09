@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :orders, only: %i[create show index update]
   resources :collaborators, only: :show
   resources :order_messages, only: :create
+  resources :product_messages, only: :create
 end
