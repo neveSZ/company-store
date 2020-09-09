@@ -15,9 +15,8 @@
 
 <h2> Encontre por categoria </h2>
 <% if @categories.any? %>
-    <h2> Encontre por categoria </h2>
     <% @categories.each do |category| %>
-        <%= link_to category.name %>
+        <%= link_to category.name, home_search_category_path(category: category) %>
     <% end %>
 <% else %>
     Nenhuma categoria disponível

@@ -13,4 +13,11 @@ class HomeController < ApplicationController
     @categories = Category.all
     render :index
   end
+
+  def search_category
+    @collaborator = current_collaborator
+    @products = Product.joins(:collaborator).where(status: 0, collaborators: { company: @collaborator.company }, category: params[:category])
+    @categories = Category.all
+    render :index
+  end
 end

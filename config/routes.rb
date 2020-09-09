@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :collaborators, controllers: { registrations: 'collaborators/registrations' }
   get 'home/search', to: 'home#search'
+  get 'home/search_category', to: 'home#search_category'
   get 'orders/completed', to: 'orders#completed'
   root to: 'home#index'
 
