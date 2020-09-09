@@ -40,7 +40,7 @@ feature 'Collaborator sign up a account' do
     click_on 'Cadastre-se'
     click_on 'Cadastrar'
 
-    expect(page).to have_content('não pode ficar em branco', count: 2)
+    expect(page).to have_content('não pode ficar em branco', count: 3)
     expect(page).to_not have_content 'Marketplace'
     expect(page).to_not have_content 'Você realizou seu registro com sucesso'
   end

@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   has_many :product_messages
   belongs_to :collaborator
   mount_uploaders :images, ImageUploader
-  validates :name, :category_id, :description, :value, :status, :collaborator_id, presence: true
+  validates :name, :category, :description, :value, :status, :collaborator_id, presence: true
 
   enum status: {
     avaliable: 0,

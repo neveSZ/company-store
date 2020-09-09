@@ -1,8 +1,8 @@
 class OrderMessage < ApplicationRecord
   belongs_to :collaborator
   belongs_to :order
-  after_create :set_type
-  validates :text, presence: true
+  before_validation :set_date, :set_type
+  validates :text, :collaborator, :order, :date, :collaborator_type, presence: true
 
   enum collaborator_type: {
     'Vendedor(a)': 0,
@@ -15,6 +15,9 @@ class OrderMessage < ApplicationRecord
                              else
                                'Comprador(a)'
                              end
-    save
+  end
+
+  private def set_date
+    self.date = Time.current
   end
 end

@@ -2,8 +2,10 @@ class Order < ApplicationRecord
   belongs_to :collaborator
   has_many :order_messages
   belongs_to :product
-  before_create :set_init_value, :set_order_date
+  before_validation :set_init_value, :set_order_date
   after_create :set_negotiation
+  validates :collaborator, :product, :order_date, :status, presence: true
+  validates :value, numericality: { greater_than_or_equal_to: 0.00 }, presence: true
 
   enum status: {
     negotiation: 0,
@@ -16,7 +18,7 @@ class Order < ApplicationRecord
   end
 
   private def set_order_date
-    self.order_date = Time.now
+    self.order_date = Time.current
   end
 
   def set_negotiation
