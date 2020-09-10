@@ -1,10 +1,13 @@
-<% if @products.any? %>
-    <% @products.each do |product| %>
-        <%= link_to product.name, product %>
-        <%= number_to_currency product.value %>
-        <%= "Status: #{product.status}" %>
+<div class= "m-4">
+    <% if @products.any? %>
+        <% @products.each do |product| %>
+            <div class = 'row my-3'>
+                <%= link_to product.name, product, class: 'col' %>
+                <span class = 'col'> <%= "Status: #{product.status}"%> </span>
+                <span class = 'col'><%= number_to_currency product.value %> </span>
+            </div>
+        <% end %>
+    <% else %>
+        Você ainda não anunciou um produto
     <% end %>
-<% else %>
-    Você ainda não anunciou um produto
-<% end %>
-
+</div>

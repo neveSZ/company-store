@@ -1,5 +1,11 @@
-<%= form_with model: @order, local:true do |f| %>
-    <%= f.label :value %>
-    <%= f.number_field :value %>
-    <%= f.submit 'Finalizar' %>
-<% end %>
+<div class= "m-4">
+    <div>
+        <h2> Concluir Venda </h2>
+    </div>
+    <%= form_with model: @order, local:true do |f| %>
+        <div class ='input-group', style='max-width: 430px'>
+            <%= f.label :value, class: 'input-group-text'%> <%= f.number_field :value , class: 'form-control'%>
+            <%= f.submit 'Finalizar', class:'btn btn-primary' %>
+        </div>
+    <% end %>
+</div>

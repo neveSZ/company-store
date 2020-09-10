@@ -1,18 +1,24 @@
-<% if @collaborator.present? %>
-    <%= @collaborator.name %>
-    <%= @collaborator.email %>
-    <%= @collaborator.birth_date %>
-    <%= @collaborator.role %>
-    <%= @collaborator.department %>
-    <% if @products.any? %>
-        <% @products.each do |product| %>
-            <%= link_to product.name, product %>
-            <%= number_to_currency product.value %>
-            <% if current_collaborator != product.collaborator %>
-                <%= link_to 'Comprar', orders_path(product_id: product),method: :post %>
-            <% end %>
-        <% end %>
-    <% else %>
-        Nenhum produto disponível
+<div class = 'm-4'>
+    <% if @collaborator.present? %>
+            <div>
+                <h2> <%= "#{@collaborator.name} - #{@collaborator.email}"%></h2>
+                <h4> <%= "Departamento: #{@collaborator.department} Cargo: #{@collaborator.role}" %>
+            </div>
+            <div class = 'mt-5'>
+                <h2> Produtos à venda </h2>
+                <% if @products.any? %>
+                    <% @products.each do |product| %>
+                        <div class ='row my-3 d-flex justify-content-between align-items-center'>
+                            <%= link_to product.name, product, class: 'col' %></span>
+                            <span class = 'col'><%= number_to_currency product.value %></span>
+                            <% if current_collaborator != product.collaborator %>
+                                <%= link_to 'Comprar', orders_path(product_id: product),method: :post, class: 'btn btn-primary col' %>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% else %>
+                    Nenhum produto disponível
+                <% end %>
+            </div>
     <% end %>
-<% end %>
+</div>

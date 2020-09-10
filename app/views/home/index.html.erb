@@ -1,23 +1,39 @@
 
-<h2> Produtos à venda </h2>
-<% if @products.any? %>
-    <% @products.each do |product| %>
-        <%= link_to product.name, product %>
-        <%= number_to_currency product.value %>
-        <% if current_collaborator != product.collaborator %>
-            <%= link_to 'Comprar', orders_path(product_id: product),method: :post %>
+<div class = 'm-4'>
+    <h2> Produtos à venda </h2>
+    <% if @products.any? %>
+        <div class="list-group list-group-horizontal">
+        <% @products.each do |product| %>
+            <div class= "list-group-item p-3">
+                <div class= 'd-flex justify-content-between align-items-center px-2'>
+                    <h4><%= link_to product.name, product %></h4>
+                    <% if current_collaborator != product.collaborator %>
+                        <div class= 'd-flex flex-row-reverse'> <%= link_to 'Comprar', orders_path(product_id: product), method: :post, class: 'btn btn-primary' %> </div>
+                    <% end %>
+                </div>
+                <% if product.images_urls.any? %>
+                    <%= image_tag(product.images_urls.first, :size => "200x200") %><br>
+                <% else %>
+                    <%= image_tag('default_product.png', :size => "200x200") %><br>
+                <% end %>
+                <h5 class='d-flex justify-content-center mt-2'><%= number_to_currency product.value %></span>
+            </div>
         <% end %>
+        </div>
+    <% else %>
+        Nenhum produto disponível
     <% end %>
-<% else %>
-    Nenhum produto disponível
-<% end %>
+</div>
 
-
-<h2> Encontre por categoria </h2>
-<% if @categories.any? %>
-    <% @categories.each do |category| %>
-        <%= link_to category.name, home_search_category_path(category: category) %>
+<div class = 'm-4'>
+    <h2> Encontre por categoria </h2>
+    <% if @categories.any? %>
+        <div class= "list-group list-group-horizontal">
+            <% @categories.each do |category| %>
+                <h5 class = 'list-group-item p-3'><%= link_to category.name, home_search_category_path(category: category) %></h5>
+            <% end %>
+        </div>
+    <% else %>
+        Nenhuma categoria disponível
     <% end %>
-<% else %>
-    Nenhuma categoria disponível
-<% end %>
+</div>

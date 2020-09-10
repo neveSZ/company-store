@@ -15,7 +15,6 @@ feature 'collaborator see other collaborator details' do
 
     expect(page).to have_content(collaborator.name)
     expect(page).to have_content(collaborator.email)
-    expect(page).to have_content(collaborator.birth_date)
     expect(page).to have_content(collaborator.role)
     expect(page).to have_content(collaborator.department)
     expect(page).to have_content(product1.name)
@@ -36,7 +35,6 @@ feature 'collaborator see other collaborator details' do
 
     expect(page).to have_content(collaborator1.name)
     expect(page).to have_content(collaborator1.email)
-    expect(page).to have_content(collaborator1.birth_date)
     expect(page).to have_content(collaborator1.role)
     expect(page).to have_content(collaborator1.department)
     expect(page).to have_content(product1.name)
@@ -72,7 +70,6 @@ feature 'collaborator see other collaborator details' do
 
     expect(page).to have_content(collaborator_other.name)
     expect(page).to have_content(collaborator_other.email)
-    expect(page).to have_content(collaborator_other.birth_date)
     expect(page).to have_content(collaborator_other.role)
     expect(page).to have_content(collaborator_other.department)
     expect(page).to have_content(product2.name)

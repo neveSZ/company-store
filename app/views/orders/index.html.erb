@@ -1,9 +1,13 @@
-<% if @orders.any? %>
-    <% @orders.each do |order| %>
-        <%= link_to "Pedido ##{order.id} - #{order.product.name}", order %>
-        <%= number_to_currency order.value %>
-        <%= "Status: #{order.status}"%>
+<div class= "m-4">
+    <% if @orders.any? %>
+        <% @orders.each do |order| %>
+            <div class ='row my-3'>
+                <%= link_to "Pedido ##{order.id} - #{order.product.name}", order, class: 'col' %>
+                <span class = 'col'><%= number_to_currency order.value %></span>
+                <span class = 'col'><%= "Status: #{order.status}"%></span>
+            </div>
+        <% end %>
+    <% else %>
+        <div> Você ainda não possui pedidos </div>
     <% end %>
-<% else %>
-    Você ainda não possui pedidos
-<% end %>
+</div>

@@ -1,40 +1,55 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CompanyStore</title>
+    <title>Marketplace</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <% if collaborator_signed_in? %>
-      <h1> Marketplace </h1>
-
-      <%= "#{current_collaborator.company.name} - www.#{current_collaborator.company.domain}" %>
-      
-      <%= link_to 'Inicio', root_path %>
-
-      <% if current_collaborator.inactive? %>
-          <%= link_to 'Completar informações', edit_collaborator_registration_path(current_collaborator) %>
-      <% end %>
-
-      <% if current_collaborator.active? %>
-          <%= link_to 'Anunciar', new_product_path %>
-          <%= link_to 'Minhas compras',  orders_path(seller: false) %>
-          <%= link_to 'Minhas vendas',  orders_path(seller: true) %>
-          <%= link_to 'Meus produtos',  products_path %>
-      <% end %>
-
-      <%= form_with url: home_search_path, method: :get, local: true do |f| %>
-          <%= f.text_field :product_search %>
-          <%= f.submit 'Pesquisar' %>
-      <% end %>
-
-    <% end %>
-
   </head>
 
   <body>
+    <% if collaborator_signed_in? %>
+    
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
+        <span class = 'navbar-brand mx-3 '> Marketplace </span>
+        <span class="navbar-text text-nowrap mx-2"><%= "#{current_collaborator.company.name} - www.#{current_collaborator.company.domain}" %></span>
+    
+          <ul class="navbar-nav">
+            <li class="nav-item"> <%= link_to 'Inicio', root_path, class: 'nav-link' %> </li>
+
+            <% if current_collaborator.inactive? %>
+              <li class="nav-item"> <%= link_to 'Completar informações', edit_collaborator_registration_path(current_collaborator ), class: 'nav-link' %> </li>
+            <% end %>
+          
+
+            <% if current_collaborator.active? %>
+              <li class="nav-item"> <%= link_to 'Anunciar', new_product_path, class: 'nav-link' %> </li>
+              <li class="nav-item"> <%= link_to 'Minhas compras',  orders_path(seller: false), class: 'nav-link' %> </li>
+              <li class="nav-item"> <%= link_to 'Minhas vendas',  orders_path(seller: true), class: 'nav-link' %> </li>
+              <li class="nav-item"> <%= link_to 'Meus produtos',  products_path, class: 'nav-link' %> </li>
+            <% end %>
+
+            <li class="nav-item"> <%= link_to 'Sair', destroy_collaborator_session_path, class: 'nav-link', method: :delete  %> </li>
+          </ul>
+
+      </nav>
+
+
+
+
+      <%= form_with url: home_search_path, method: :get, local: true do |f| %>
+            <div class = 'input-group m-4', style='max-width: 430px'>
+              <%= f.text_field :product_search, placeholder: 'Procure por produto, categoria ou descrição', class: 'form-control' %>
+              <div class='input-group-append'>
+                <%= f.submit 'Pesquisar', class: 'btn btn-primary' %>
+              </div>
+            </div>
+          <% end %>
+
+      
+    <% end %>
     <% flash.each do |type, msg| %>
       <div>
         <%= msg %>

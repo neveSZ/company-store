@@ -1,34 +1,68 @@
 <% if @product.present? %>
-    <%= @product.name %>
-    <%= link_to "Vendido por: #{@product.collaborator.name} - #{@product.collaborator.department}", collaborator_path(@product.collaborator) %>
-    <%= "Categoria: #{@product.category.name} "%>
-    <%= @product.description %>
-    <%= number_to_currency @product.value %>
-    <% if current_collaborator == @product.collaborator %>
-        <%= "Status: #{@product.status}"%>
-        <% if @product.avaliable? %>
-            <%= link_to 'Suspender venda', product_path(product: {id: @product, status: 'inactive'}), method: :put %>
-        <% elsif @product.inactive? %>
-            <%= link_to 'Reativar venda', product_path(product: {id: @product, status: 'avaliable'}), method: :put %>
-        <% end %>
-    <% else %>
-        <%= link_to 'Comprar', orders_path(product_id: @product),method: :post %>
-    <% end %>   
-    <%  @product.images_urls.each do |image_url| %>
-        <%= image_tag(image_url) %>
-    <% end %>
+    <div class = 'm-4'>
+        <h2> <%= @product.name %> </h2>
+        <div class = 'd-flex justify-content-between'>
+            <div class='w-50'>
+                <%= link_to "Vendido por: #{@product.collaborator.name} - #{@product.collaborator.department}", collaborator_path(@product.collaborator) %> <br>
+                <%= "Categoria: #{@product.category.name} "%>  <br>
+                <p class = 'text-wrap' style='word-wrap: break-word'>
+                    <%= @product.description %>
+                </p>
+                    <% if current_collaborator == @product.collaborator %>
+                        <%= "Status: #{@product.status}"%>
+                            <div class= 'd-flex justify-content-center align-items-center'>
+                            <h2 class = 'mr-2'>
+                            <%= number_to_currency @product.value %>
+                            </h2>
+                            <% if @product.avaliable? %>
+                                <%= link_to 'Suspender venda', product_path(product: {id: @product, status: 'inactive'}), method: :put, class: 'btn btn-primary' %>
+                            <% elsif @product.inactive? %>
+                                <%= link_to 'Reativar venda', product_path(product: {id: @product, status: 'avaliable'}), method: :put, class: 'btn btn-primary' %>
+                            <% end %>
+                        </div>
+                    <% else %>
+                        <div class= 'd-flex justify-content-center align-items-center'>
+                        <h2 class = 'mr-2'>
+                            <%= number_to_currency @product.value %>
+                        </h2>
+                        <% if @product.avaliable? %>
+                                <%= link_to 'Comprar', orders_path(product_id: @product),method: :post, class: 'btn btn-primary' %>
+                        <% end %>
+                        </div>
+                    <% end %>   
+  
+            </div>
+            <div class = 'w-50'>
+                <% if @product.images_urls.any? %>
+                    <%  @product.images_urls.each do |image_url| %>
+                        <%= image_tag(image_url, :size => "200x200") %>
+                    <% end %>
+                <% else %>
+                    <%= image_tag('default_product.png', :size => "200x200") %>
+                <% end %>
+            </div>
+        </div>
+            
+        <div>
+            <h3 class='my-3'> Mensagens </h3>
+            <%  @product.product_messages.each do |message| %>
+                <div class='my-1'>
+                    <h5> <%= message.collaborator.name %> </h5>
+                    <h6> <%= message.collaborator.department %> </h6> 
+                    <p class = 'text-wrap' style='word-wrap: break-word'>
+                        <%= message.text %>
+                    </p>
+                </div>
+            <% end %>
+        </div>
 
-    <h2> Mensagens </h2>
-    <%  @product.product_messages.each do |message| %>
-        <%= message.collaborator.name %>
-        <%= message.collaborator.department %>
-        <%= message.text %>
-    <% end %>
-    
-    <h2> Nova Mensagem </h2>
-    <%= form_with model: ProductMessage.new, local: true do |f| %>
-        <%= f.text_area :text %>
-        <%= f.hidden_field :product_id, value: @product.id %>
-        <%= f.submit 'Enviar' %>
-    <% end %>
+        <div>
+        <h3 class='my-3'> Nova Mensagem </h3>
+            <%= form_with model: ProductMessage.new, local: true do |f| %>
+                <%= f.text_area :text, class: 'form-control', rows: 4 , style: 'max-width: 1200px' %>
+                <%= f.hidden_field :product_id, value: @product.id %>
+                <%= f.submit 'Enviar', class: 'btn btn-outline-primary mt-2' %>
+            <% end %>
+        </div>
+    </div>
 <% end %>

@@ -35,6 +35,7 @@ class ProductsController < ApplicationController
       @product.status = product_params[:status]
       redirect_to @product
     else
+      @products = Product.where(collaborator: current_collaborator)
       render :index
     end
   end
