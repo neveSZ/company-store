@@ -9,7 +9,7 @@ Um esboço rápido do diagrama de classes pode ser acessado [aqui](./diagrams/cl
 Um board do Trello está sendo utilizado para a elaboração do projeto, você pode acessa-lo nesse [link](https://trello.com/b/ruL0xNhc/projeto-treinadev).
 
 ## Instruções para executar
-Para a execução do projeto é recomendável que você esteja na versão 2.7.0 do Ruby, utilizando a versão 6.0.3.2 do framework Rais e com o SQLite instalado.
+Para a execução do projeto é recomendável que você esteja na versão 2.7.0 do Ruby, utilizando a versão 6.0.3.2 do framework Rails e com o SQLite instalado.
 
 Você pode instala-los através desses links:
 * Ruby: https://www.ruby-lang.org/pt/downloads/
@@ -23,7 +23,7 @@ yarn install
 rails db:migrate
 rails start
 ```
-Em seguida acesse o servidor através do endereço `localhost:3000`
+Em seguida acesse o servidor através do endereço https://localhost:3000
 
 ## Gems utilizadas
 * [Capybara](https://github.com/teamcapybara/capybara) (capybara): para criação de testes de funcionalidade, integração e testes unitários;
@@ -48,5 +48,14 @@ Em seguida acesse o servidor através do endereço `localhost:3000`
 * [seller_change_order_status](./spec/features/seller_change_order_status_spec.rb): colaborador muda o status do pedido;
 * [seller_change_product_status](./spec/features/seller_change_product_status_spec.rb): colaborador altera o status do produto.
 
+## Instruções para executar os testes
 
+Execute os seguintes comandos para subir o banco de dados no ambiente de testes e executar os testes.
+
+```
+rails db:migrate RAILS_ENV=test
+rspec
+```
+
+*Você também pode executar o teste de uma feature, scenario ou caso específico através dos comandos: rspec nome_do_arquivo_spec.rb ou nome_do_arquivo_spec.rb:linha_do_scenario*
 
