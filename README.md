@@ -29,10 +29,11 @@ Em seguida acesse o servidor através do endereço `localhost:3000`
 * [Capybara](https://github.com/teamcapybara/capybara) (capybara): para criação de testes de funcionalidade, integração e testes unitários;
 * [Devise](https://github.com/heartcombo/devise) (devise): para realizar a autenticação dos colaboradores;
 * [RSpec](https://github.com/rspec/rspec-rails) (rspec-rails): para a realização de testes de usabilidade/integração, simulando a utilização de um usuário na web;
-* [CarrierWave](https://github.com/carrierwaveuploader/carrierwave) (carrierwave): para fazer o upload das imagens dos anuncios.
+* [CarrierWave](https://github.com/carrierwaveuploader/carrierwave) (carrierwave): para fazer o upload das imagens dos anuncios;
+* [Bootstrap](https://github.com/twbs/bootstrap-rubygem) (bootstrap): para realizar a construção dos layouts da página.
 
 ## Testes de features utilizados
-* [collaborator_buy_product](./spec/features/collaborator_buy_product.rb): colaborador realiza a compra de um produto;
+* [collaborator_buy_product](./spec/features/collaborator_buy_product_spec.rb): colaborador realiza a compra de um produto;
 * [collaborator_add_info](./spec/features/collaborator_add_info_spec.rb): colaborador completa as informações do seu perfil;
 * [collaborator_announce_product](./spec/features/collaborator_announce_product_spec.rb): colaborador anuncia um produto;
 * [collaborator_order_message](./spec/features/collaborator_order_message_spec.rb): colaborador envia ou recebe uma mensagem no pedido;
@@ -42,6 +43,7 @@ Em seguida acesse o servidor através do endereço `localhost:3000`
 * [collaborator_see_orders](./spec/features/collaborator_see_orders_spec.rb): colaborador visualiza a sua lista de pedidos;
 * [collaborator_see_other_collaborator](./spec/features/collaborator_see_other_collaborator_spec.rb): colaborator acessa o perfil de outro colaborador;
 * [collaborator_see_product_info](./spec/features/collaborator_see_product_info_spec.rb): colaborador visualiza as informações de um produto;
+* [collaborator_see_products_from_category](./spec/featurescollaborator_see_products_from_category_spec.rb): colaborador visualiza os cursos de uma categoria;
 * [collaborator_sign_up_spec](./spec/features/collaborator_sign_up_spec.rb): colaborador se registra;
 * [seller_change_order_status](./spec/features/seller_change_order_status_spec.rb): colaborador muda o status do pedido;
 * [seller_change_product_status](./spec/features/seller_change_product_status_spec.rb): colaborador altera o status do produto.
